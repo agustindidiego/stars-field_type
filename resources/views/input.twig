@@ -1,0 +1,29 @@
+{{ asset_add("styles.css", "rage.field_type.stars::css/star-rating.css") }}
+{{ asset_add("styles.css", "rage.field_type.stars::css/themes/krajee-fa/theme.css") }}
+{{ asset_add('scripts.js', 'rage.field_type.stars::js/star-rating.js') }}
+{{ asset_add("scripts.js", "rage.field_type.stars::css/themes/krajee-fa/theme.js") }}
+{{ asset_add('scripts.js', 'rage.field_type.stars::js/locales/LANG.js') }}
+{{ asset_add('scripts.js', 'rage.field_type.stars::js/input.js') }}
+{% if config %}
+    {% set config = field_type.config|merge(config) %}
+{% else %}
+    {% set config = field_type.config %}
+{% endif %}
+
+<input
+        step="{{ config.step }}"
+        min="{{ config.min }}"
+        max="{{ config.max }}"
+        data-size="{{ config.size }}"
+        data-display_only="{{  config.displayOnly?'true':'false' }}"
+        {{ config.showClear != true ? 'data-show_clear="false"' }}
+        {{ config.showCaption != true ? 'data-show_caption="false"' }}
+        type="number"
+        class="form-control"
+        name="{{ field_type.input_name }}"
+        data-decimals="{{ config.decimals }}"
+        placeholder="{{ trans(field_type.placeholder) }}"
+        value="{{ field_type.value != null ? field_type.value|number_format(config.decimals, null, false) }}"
+        {{ html_attributes(field_type.attributes) }}
+        {{ field_type.disabled ? 'disabled' }}
+        {{ field_type.readonly ? 'readonly' }}/>

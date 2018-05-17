@@ -1,0 +1,9 @@
+{
+    "name": "rage/stars-field_type",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Rage\\StarsFieldType\\": "src/"
+        }
+    }
+}
